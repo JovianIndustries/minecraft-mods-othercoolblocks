@@ -1,5 +1,5 @@
 {
   "variants": {
-    "normal": { "model": "othercoolblocks:crafting_station" }
+    "": { "model": "othercoolblocks:block/expanded_crafting_table" }
   }
 }
