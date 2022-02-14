@@ -14,7 +14,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 version = '1.18.1'
-group = 'com.uzihead.minecraft.othercoolblocks' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = 'com.uzihead.othercoolblocks' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'othercoolblocks'
 
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
