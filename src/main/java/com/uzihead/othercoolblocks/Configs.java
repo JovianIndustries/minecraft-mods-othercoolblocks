@@ -19,9 +19,7 @@ public class Configs {
   }
 
   public static class Server {
-
       public static ForgeConfigSpec.BooleanValue sideInventories;
-
       Server(ForgeConfigSpec.Builder builder) {
           builder.push("general");
           sideInventories = builder

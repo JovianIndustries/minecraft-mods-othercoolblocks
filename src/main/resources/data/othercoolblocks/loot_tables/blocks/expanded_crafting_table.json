@@ -1,0 +1,19 @@
+{
+  "type": "othercoolblocks:expanded_crafting_table",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "othercoolblocks:expanded_crafting_table"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ]
+    }
+  ]
+}

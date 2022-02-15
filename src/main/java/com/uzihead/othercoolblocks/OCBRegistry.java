@@ -19,7 +19,7 @@ public class OCBRegistry{
         
         @SubscribeEvent
         public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
-            BlockBehaviour.Properties wood = BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE).noOcclusion();
+            BlockBehaviour.Properties wood = BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE);
             OtherCoolBlocks.register(new ExpandedCraftingTableBlock(wood), "expanded_crafting_table", blockRegistryEvent.getRegistry());
         }
 
