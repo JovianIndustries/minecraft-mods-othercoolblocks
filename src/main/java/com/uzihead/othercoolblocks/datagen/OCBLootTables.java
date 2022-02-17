@@ -1,4 +1,4 @@
-﻿package com.uzihead.othercoolblocks.datagen;
+package com.uzihead.othercoolblocks.datagen;
 
 import net.minecraft.data.DataGenerator;
 

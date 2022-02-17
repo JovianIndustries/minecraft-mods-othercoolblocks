@@ -1,4 +1,4 @@
-﻿package com.uzihead.othercoolblocks.datagen;
+package com.uzihead.othercoolblocks.datagen;
 
 import com.uzihead.othercoolblocks.OCBRegistration;
 import com.uzihead.othercoolblocks.OCBRegistration.RegistryEvents;
@@ -17,6 +17,6 @@ public class OCBItemModels extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        withExistingParent(RegistryEvents.EXPANDED_CRAFTING_TABLE_ITEM.get().getRegistryName().getPath(), modLoc("block/expanded_crafting_table"));
+        //withExistingParent(RegistryEvents.EXPANDED_CRAFTING_TABLE_ITEM.get().getRegistryName().getPath(), modLoc("block/expanded_crafting_table"));
     }
 }

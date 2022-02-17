@@ -1,4 +1,4 @@
-﻿package com.uzihead.othercoolblocks.datagen;
+package com.uzihead.othercoolblocks.datagen;
 import com.uzihead.othercoolblocks.OCBRegistration.RegistryEvents;
 import com.uzihead.othercoolblocks.OtherCoolBlocks;
 import net.minecraft.data.DataGenerator;

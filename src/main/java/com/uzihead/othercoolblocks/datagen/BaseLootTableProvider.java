@@ -1,4 +1,4 @@
-﻿package com.uzihead.othercoolblocks.datagen;
+package com.uzihead.othercoolblocks.datagen;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -48,7 +48,7 @@ public abstract class BaseLootTableProvider extends LootTableProvider {
     }
 
     protected abstract void addTables();
-
+    
     protected LootTable.Builder createStandardTable(String name, Block block, BlockEntityType<?> type) {
         LootPool.Builder builder = LootPool.lootPool()
             .name(name)
