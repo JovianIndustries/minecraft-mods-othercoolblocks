@@ -3,10 +3,13 @@ package com.uzihead.othercoolblocks;
 import com.uzihead.othercoolblocks.block.ExpandedCraftingTableBlock;
 import com.uzihead.othercoolblocks.network.PacketHandler;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -29,32 +32,25 @@ import java.util.stream.Collectors;
 public class OtherCoolBlocks
 {
     public static final String MODID = "othercoolblocks";
-
-//    public static final Tag.Named<BlockEntityType<?>> blacklisted
-//        = ForgeTagHandler.makeWrapperTag(ForgeRegistries.BLOCK_ENTITIES, new ResourceLocation(MODID,"blacklisted"));
-    // Directly reference a log4j logger.
     public static final Logger LOGGER = LogManager.getLogger();
-    //private static final DeferredRegister<Block> BLOCK = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
     
-    public static Configs.Server SERVER;
-    public static ForgeConfigSpec SERVER_SPEC;
     
     public OtherCoolBlocks() {
-        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, SERVER_SPEC);
+        IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        OCBRegistration.RegistryEvents.init();
+        modBus.addListener(ModSetup::init);
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> modBus.addListener(ClientSetup :: init));
+        
         // Register the setup method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+        modBus.addListener(this::setup);
         // Register the enqueueIMC method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
+        modBus.addListener(this::enqueueIMC);
         // Register the processIMC method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
+        modBus.addListener(this::processIMC);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
-    }
-
-    static {
-        final Pair<Configs.Server, ForgeConfigSpec> specPair2 = new ForgeConfigSpec.Builder().configure(Configs.Server::new);
-        SERVER_SPEC = specPair2.getRight();
-        SERVER = specPair2.getLeft();
+        
     }
     
     private void setup(final FMLCommonSetupEvent event)    {
@@ -73,21 +69,11 @@ public class OtherCoolBlocks
                 map(m->m.messageSupplier().get()).
                 collect(Collectors.toList()));
     }
+    
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
         // do something when the server starts
         LOGGER.info("HELLO from server starting");
-    }
-
-    public static <T extends IForgeRegistryEntry<T>> void register(T obj, String name, IForgeRegistry<T> registry) {
-        OtherCoolBlocks.LOGGER.info(MODID + ":registerItems");
-        registry.register(obj.setRegistryName(new ResourceLocation(MODID, name)));
-        OtherCoolBlocks.LOGGER.info("%sRegistered: ".formatted(MODID), obj.getRegistryName());
-    }
-    
-    @ObjectHolder(MODID)
-    public static class Objects {
-        public static final ExpandedCraftingTableBlock expanded_crafting_table = null;
     }
 }
